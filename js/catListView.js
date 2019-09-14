@@ -34,7 +34,7 @@ const __attachClickListenerOnList = () => {
     if (nodeType === "UL") {
       return;
     }
-    selectedCatId = __getCatIdFromDOM(target, nodeType);
+    const selectedCatId = __getCatIdFromDOM(target, nodeType);
     controller.setSelectedCatID(selectedCatId);
   });
 };
