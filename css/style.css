@@ -83,3 +83,10 @@ body {
   -moz-user-select: none;
   -webkit-user-select: none;
 }
+
+/* playArena logo */
+.logo__conatiner {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
