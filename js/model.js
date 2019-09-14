@@ -46,8 +46,8 @@ const model = {
     cats.selectedCat = id;
   },
   incrementClickCount: id => {
-    if (cats[id]) {
-      ++cats[id].clicks;
+    if (cats.data[id]) {
+      ++cats.data[id].clicks;
     }
   }
 };
