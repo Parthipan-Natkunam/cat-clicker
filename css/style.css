@@ -49,12 +49,16 @@ body {
 }
 
 /* right container */
-.cat-container {
+.cat-container__wrapper {
   position: relative;
   flex: 0 0 calc(100% - 250px);
 }
-
-.name {
+.cat-container {
+  height: 100%;
+  cursor: pointer;
+  background: url("../img/1.jpg") left top/cover no-repeat;
+}
+.cat-container__name {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -67,15 +71,7 @@ body {
   background: #fff;
   padding: 10px;
 }
-
-.catpic {
-  height: 100%;
-  cursor: pointer;
-}
-#cat-container-0 {
-  background: url("../img/1.jpg") left top/cover no-repeat;
-}
-.counter {
+.cat-container__counter {
   position: absolute;
   display: inline-block;
   background: #fff;
