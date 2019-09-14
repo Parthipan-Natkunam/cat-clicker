@@ -56,7 +56,6 @@ body {
 .cat-container {
   height: 100%;
   cursor: pointer;
-  background: url("../img/1.jpg") left top/cover no-repeat;
 }
 .cat-container__name {
   margin: 0;

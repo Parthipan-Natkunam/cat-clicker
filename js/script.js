@@ -31,11 +31,12 @@ const catsArray = [
     image: `${imageDir}5.jpg`
   }
 ];
+const catListDOM = document.getElementById("catList");
+let selectedCatId;
 
 const loadCatList = () => {
-  const catListDOM = document.getElementById("catList");
   const listMarkup = catsArray.map(cat => {
-    return `<li class="cat-list__item">
+    return `<li class="cat-list__item" data-id="${cat.id}">
         <img src="${cat.image}" class="cat-list__thumbnail" alt="cat thumbnail" />
         <span class="cat-list__name">
           <b>${cat.name}</b>
@@ -45,8 +46,61 @@ const loadCatList = () => {
   catListDOM.innerHTML = listMarkup.join("");
 };
 
+const getCatIdFromDOM = (target, tagName) => {
+  let catId;
+  if (tagName === "LI") {
+    catId = target.dataset.id;
+  } else {
+    const listNode = target.closest("li");
+    if (listNode) {
+      catId = listNode.dataset.id;
+    }
+  }
+  return catId;
+};
+
+const setCountDisplay = count => {
+  const countDOM = document.getElementById("clickCount");
+  countDOM.innerText = count;
+};
+
+const setCatDetails = selectedId => {
+  const catAreaDOM = document.getElementById("catDisplayArea");
+  const catNameDOM = document.getElementById("catName");
+  const selectedCat = catsArray[selectedId];
+  catAreaDOM.style.background = `url("${selectedCat.image}") left top/cover no-repeat`;
+  catNameDOM.innerText = selectedCat.name;
+  setCountDisplay(selectedCat.clicks);
+};
+
+const attachClickListenerOnList = () => {
+  catListDOM.addEventListener("click", ev => {
+    const target = ev.target;
+    const nodeType = target.tagName;
+    if (nodeType === "UL") {
+      return;
+    }
+    selectedCatId = getCatIdFromDOM(target, nodeType);
+    setCatDetails(selectedCatId);
+  });
+};
+
+const incrementClickCount = () => {
+  if (selectedCatId) {
+    ++catsArray[selectedCatId].clicks;
+    setCountDisplay(catsArray[selectedCatId].clicks);
+  }
+};
+
+const attachClickListenerOnPic = () => {
+  const catPicDOM = document.getElementById("catDisplayArea");
+  catPicDOM.addEventListener("click", incrementClickCount);
+};
+
 const initCatApp = () => {
   loadCatList();
+  attachClickListenerOnList();
+  attachClickListenerOnPic();
 };
 
 window.addEventListener("load", initCatApp);
