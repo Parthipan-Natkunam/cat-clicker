@@ -1,6 +1,6 @@
 const imageDir = "/img/";
-const cats = {
-  data: [
+const data = {
+  cats: [
     {
       id: 0,
       name: "Phoebie",
@@ -37,17 +37,17 @@ const cats = {
 
 const model = {
   getCats: () => {
-    return cats.data;
+    return data.cats;
   },
   getSelectedCat: () => {
-    return cats.data[cats.selectedCat];
+    return data.cats[data.selectedCat];
   },
   setSelectedCatId: id => {
-    cats.selectedCat = id;
+    data.selectedCat = id;
   },
   incrementClickCount: id => {
-    if (cats.data[id]) {
-      ++cats.data[id].clicks;
+    if (data.cats[id]) {
+      ++data.cats[id].clicks;
     }
   }
 };
