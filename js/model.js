@@ -49,6 +49,20 @@ const model = {
     if (data.cats[id]) {
       ++data.cats[id].clicks;
     }
+  },
+  updateCatDetails: updateObj => {
+    const selectedCat = data.cats[data.selectedCat];
+    const { name, clicks, image } = updateObj;
+    if (name) {
+      selectedCat.name = name;
+    }
+    if (typeof clicks !== "undefined") {
+      selectedCat.clicks = +clicks;
+    }
+    if (image) {
+      selectedCat.image = image;
+    }
+    return selectedCat;
   }
 };
 

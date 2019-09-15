@@ -5,9 +5,9 @@ const catListDOM = document.getElementById("catList");
 const __loadCatList = cats => {
   const listMarkup = cats.map(cat => {
     return `<li class="cat-list__item" data-id="${cat.id}">
-          <img src="${cat.image}" class="cat-list__thumbnail" alt="cat thumbnail" />
+          <img src="${cat.image}" class="cat-list__thumbnail" id="thumbnail-${cat.id}" alt="cat thumbnail" />
           <span class="cat-list__name">
-            <b>${cat.name}</b>
+            <b  id="listName-${cat.id}">${cat.name}</b>
           </span>
         </li>`;
   });
@@ -44,6 +44,12 @@ const catListView = {
     catListDOM.innerHTML = "";
     __loadCatList(cats);
     __attachClickListenerOnList();
+  },
+  reRenderItem: cat => {
+    const catName = document.getElementById(`listName-${cat.id}`);
+    const catImage = document.getElementById(`thumbnail-${cat.id}`);
+    catName.innerText = cat.name;
+    catImage.src = `${cat.image}`;
   }
 };
 

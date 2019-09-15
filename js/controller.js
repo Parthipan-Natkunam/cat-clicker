@@ -1,10 +1,12 @@
 import model from "./model.js";
 import catListView from "./catListView.js";
 import catDisplayView from "./catDisplayView.js";
+import adminView from "./adminView.js";
 
 const controller = {
   init: () => {
     catDisplayView.init();
+    adminView.init();
     const cats = model.getCats();
     catListView.render(cats);
   },
@@ -20,6 +22,15 @@ const controller = {
     const selectedCat = model.getSelectedCat();
     catDisplayView.render(selectedCat);
     catDisplayView.renderCount(selectedCat.clicks);
+  },
+  updateCatDetails: obj => {
+    const updatedCat = model.updateCatDetails(obj);
+    catListView.reRenderItem(updatedCat);
+    catDisplayView.render(updatedCat);
+    catDisplayView.renderCount(updatedCat.clicks);
+  },
+  getSelectedCat: () => {
+    return model.getSelectedCat();
   }
 };
 
